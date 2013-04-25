@@ -30,6 +30,6 @@ rosbuild_genmsg()
 #target_link_libraries(example ${PROJECT_NAME})
 
 rosbuild_add_executable(requester src/requester.cpp)
-rosbuild_add_executable(tasker src/requester.cpp)
+rosbuild_add_executable(tasker src/tasker.cpp)
 
 
