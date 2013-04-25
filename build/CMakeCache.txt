@@ -249,7 +249,7 @@ _CATKIN_GTEST_INCLUDE:FILEPATH=_CATKIN_GTEST_INCLUDE-NOTFOUND
 _CATKIN_GTEST_SRC:FILEPATH=/usr/src/gtest/src/gtest.cc
 
 //Path to a file.
-_file_name:FILEPATH=//nishome/gcerna/ros/rosbuild_ws/taskallocator/src/requester.cpp
+_file_name:FILEPATH=/nishome/gcerna/ros/rosbuild_ws/taskallocator/src/tasker.cpp
 
 //The directory containing a CMake configuration file for catkin.
 catkin_DIR:PATH=/opt/ros/groovy/share/catkin/cmake

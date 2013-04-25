@@ -3,7 +3,8 @@
 #include "std_msgs/Header.h"
 #include "taskallocator/Request.h"
 #include <string>
-
+#include <stdlib.h>
+#include <time.h>
 
 int main(int argc, char **argv) {
 	ros::init(argc, argv, "requester");
@@ -11,17 +12,22 @@ int main(int argc, char **argv) {
 	ros::Publisher requester_pub = n.advertise<taskallocator::Request>("requests",1000);
 	ros::Rate loop_rate(0.5);
 
+
+	srand(time(NULL));
+
+	
+
 	int count = 0;
 	while(ros::ok()) {
 		taskallocator::Request msg;
 		msg.taskType = "goToPoint";
 		msg.requestDevice = "robot";
-		msg.startFloor = 3;
-		msg.startX = count;
-		msg.startY = count;
-		msg.endFloor = 3;
-		msg.endX = count + 1;
-		msg.endY = count + 1;
+		msg.startFloor = 1;
+		msg.startX = rand()%100 ;
+		msg.startY = rand()%100;
+		msg.endFloor = 1;
+		msg.endX = rand()%100;
+		msg.endY = rand()%100;
 		
 		requester_pub.publish(msg);
 		

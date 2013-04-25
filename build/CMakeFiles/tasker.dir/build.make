@@ -46,53 +46,53 @@ include CMakeFiles/tasker.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/tasker.dir/flags.make
 
-CMakeFiles/tasker.dir/src/requester.cpp.o: CMakeFiles/tasker.dir/flags.make
-CMakeFiles/tasker.dir/src/requester.cpp.o: ../src/requester.cpp
-CMakeFiles/tasker.dir/src/requester.cpp.o: ../manifest.xml
-CMakeFiles/tasker.dir/src/requester.cpp.o: /opt/ros/groovy/share/catkin/package.xml
-CMakeFiles/tasker.dir/src/requester.cpp.o: /opt/ros/groovy/share/rospack/package.xml
-CMakeFiles/tasker.dir/src/requester.cpp.o: /opt/ros/groovy/share/roslib/package.xml
-CMakeFiles/tasker.dir/src/requester.cpp.o: /opt/ros/groovy/share/cpp_common/package.xml
-CMakeFiles/tasker.dir/src/requester.cpp.o: /opt/ros/groovy/share/rostime/package.xml
-CMakeFiles/tasker.dir/src/requester.cpp.o: /opt/ros/groovy/share/roscpp_traits/package.xml
-CMakeFiles/tasker.dir/src/requester.cpp.o: /opt/ros/groovy/share/roscpp_serialization/package.xml
-CMakeFiles/tasker.dir/src/requester.cpp.o: /opt/ros/groovy/share/genmsg/package.xml
-CMakeFiles/tasker.dir/src/requester.cpp.o: /opt/ros/groovy/share/genpy/package.xml
-CMakeFiles/tasker.dir/src/requester.cpp.o: /opt/ros/groovy/share/message_runtime/package.xml
-CMakeFiles/tasker.dir/src/requester.cpp.o: /opt/ros/groovy/share/rosconsole/package.xml
-CMakeFiles/tasker.dir/src/requester.cpp.o: /opt/ros/groovy/share/std_msgs/package.xml
-CMakeFiles/tasker.dir/src/requester.cpp.o: /opt/ros/groovy/share/rosgraph_msgs/package.xml
-CMakeFiles/tasker.dir/src/requester.cpp.o: /opt/ros/groovy/share/xmlrpcpp/package.xml
-CMakeFiles/tasker.dir/src/requester.cpp.o: /opt/ros/groovy/share/roscpp/package.xml
+CMakeFiles/tasker.dir/src/tasker.cpp.o: CMakeFiles/tasker.dir/flags.make
+CMakeFiles/tasker.dir/src/tasker.cpp.o: ../src/tasker.cpp
+CMakeFiles/tasker.dir/src/tasker.cpp.o: ../manifest.xml
+CMakeFiles/tasker.dir/src/tasker.cpp.o: /opt/ros/groovy/share/catkin/package.xml
+CMakeFiles/tasker.dir/src/tasker.cpp.o: /opt/ros/groovy/share/rospack/package.xml
+CMakeFiles/tasker.dir/src/tasker.cpp.o: /opt/ros/groovy/share/roslib/package.xml
+CMakeFiles/tasker.dir/src/tasker.cpp.o: /opt/ros/groovy/share/cpp_common/package.xml
+CMakeFiles/tasker.dir/src/tasker.cpp.o: /opt/ros/groovy/share/rostime/package.xml
+CMakeFiles/tasker.dir/src/tasker.cpp.o: /opt/ros/groovy/share/roscpp_traits/package.xml
+CMakeFiles/tasker.dir/src/tasker.cpp.o: /opt/ros/groovy/share/roscpp_serialization/package.xml
+CMakeFiles/tasker.dir/src/tasker.cpp.o: /opt/ros/groovy/share/genmsg/package.xml
+CMakeFiles/tasker.dir/src/tasker.cpp.o: /opt/ros/groovy/share/genpy/package.xml
+CMakeFiles/tasker.dir/src/tasker.cpp.o: /opt/ros/groovy/share/message_runtime/package.xml
+CMakeFiles/tasker.dir/src/tasker.cpp.o: /opt/ros/groovy/share/rosconsole/package.xml
+CMakeFiles/tasker.dir/src/tasker.cpp.o: /opt/ros/groovy/share/std_msgs/package.xml
+CMakeFiles/tasker.dir/src/tasker.cpp.o: /opt/ros/groovy/share/rosgraph_msgs/package.xml
+CMakeFiles/tasker.dir/src/tasker.cpp.o: /opt/ros/groovy/share/xmlrpcpp/package.xml
+CMakeFiles/tasker.dir/src/tasker.cpp.o: /opt/ros/groovy/share/roscpp/package.xml
 	$(CMAKE_COMMAND) -E cmake_progress_report /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles $(CMAKE_PROGRESS_1)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/tasker.dir/src/requester.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/tasker.dir/src/requester.cpp.o -c /nishome/gcerna/ros/rosbuild_ws/taskallocator/src/requester.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/tasker.dir/src/tasker.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -o CMakeFiles/tasker.dir/src/tasker.cpp.o -c /nishome/gcerna/ros/rosbuild_ws/taskallocator/src/tasker.cpp
 
-CMakeFiles/tasker.dir/src/requester.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tasker.dir/src/requester.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /nishome/gcerna/ros/rosbuild_ws/taskallocator/src/requester.cpp > CMakeFiles/tasker.dir/src/requester.cpp.i
+CMakeFiles/tasker.dir/src/tasker.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tasker.dir/src/tasker.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -E /nishome/gcerna/ros/rosbuild_ws/taskallocator/src/tasker.cpp > CMakeFiles/tasker.dir/src/tasker.cpp.i
 
-CMakeFiles/tasker.dir/src/requester.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tasker.dir/src/requester.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /nishome/gcerna/ros/rosbuild_ws/taskallocator/src/requester.cpp -o CMakeFiles/tasker.dir/src/requester.cpp.s
+CMakeFiles/tasker.dir/src/tasker.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tasker.dir/src/tasker.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -W -Wall -Wno-unused-parameter -fno-strict-aliasing -pthread -S /nishome/gcerna/ros/rosbuild_ws/taskallocator/src/tasker.cpp -o CMakeFiles/tasker.dir/src/tasker.cpp.s
 
-CMakeFiles/tasker.dir/src/requester.cpp.o.requires:
-.PHONY : CMakeFiles/tasker.dir/src/requester.cpp.o.requires
+CMakeFiles/tasker.dir/src/tasker.cpp.o.requires:
+.PHONY : CMakeFiles/tasker.dir/src/tasker.cpp.o.requires
 
-CMakeFiles/tasker.dir/src/requester.cpp.o.provides: CMakeFiles/tasker.dir/src/requester.cpp.o.requires
-	$(MAKE) -f CMakeFiles/tasker.dir/build.make CMakeFiles/tasker.dir/src/requester.cpp.o.provides.build
-.PHONY : CMakeFiles/tasker.dir/src/requester.cpp.o.provides
+CMakeFiles/tasker.dir/src/tasker.cpp.o.provides: CMakeFiles/tasker.dir/src/tasker.cpp.o.requires
+	$(MAKE) -f CMakeFiles/tasker.dir/build.make CMakeFiles/tasker.dir/src/tasker.cpp.o.provides.build
+.PHONY : CMakeFiles/tasker.dir/src/tasker.cpp.o.provides
 
-CMakeFiles/tasker.dir/src/requester.cpp.o.provides.build: CMakeFiles/tasker.dir/src/requester.cpp.o
+CMakeFiles/tasker.dir/src/tasker.cpp.o.provides.build: CMakeFiles/tasker.dir/src/tasker.cpp.o
 
 # Object files for target tasker
 tasker_OBJECTS = \
-"CMakeFiles/tasker.dir/src/requester.cpp.o"
+"CMakeFiles/tasker.dir/src/tasker.cpp.o"
 
 # External object files for target tasker
 tasker_EXTERNAL_OBJECTS =
 
-../bin/tasker: CMakeFiles/tasker.dir/src/requester.cpp.o
+../bin/tasker: CMakeFiles/tasker.dir/src/tasker.cpp.o
 ../bin/tasker: CMakeFiles/tasker.dir/build.make
 ../bin/tasker: CMakeFiles/tasker.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable ../bin/tasker"
@@ -102,7 +102,7 @@ tasker_EXTERNAL_OBJECTS =
 CMakeFiles/tasker.dir/build: ../bin/tasker
 .PHONY : CMakeFiles/tasker.dir/build
 
-CMakeFiles/tasker.dir/requires: CMakeFiles/tasker.dir/src/requester.cpp.o.requires
+CMakeFiles/tasker.dir/requires: CMakeFiles/tasker.dir/src/tasker.cpp.o.requires
 .PHONY : CMakeFiles/tasker.dir/requires
 
 CMakeFiles/tasker.dir/clean:

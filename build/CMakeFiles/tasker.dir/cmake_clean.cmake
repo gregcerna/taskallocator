@@ -1,7 +1,7 @@
 FILE(REMOVE_RECURSE
   "../msg_gen"
   "../src/taskallocator/msg"
-  "CMakeFiles/tasker.dir/src/requester.cpp.o"
+  "CMakeFiles/tasker.dir/src/tasker.cpp.o"
   "../bin/tasker.pdb"
   "../bin/tasker"
 )

@@ -39,6 +39,12 @@ std_msgs/Header.h
 /nishome/gcerna/ros/rosbuild_ws/taskallocator/src/std_msgs/Header.h
 taskallocator/Request.h
 /nishome/gcerna/ros/rosbuild_ws/taskallocator/src/taskallocator/Request.h
+string
+-
+stdlib.h
+-
+time.h
+-
 
 /opt/ros/groovy/include/XmlRpcDecl.h
 ros/macros.h

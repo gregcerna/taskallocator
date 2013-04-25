@@ -428,7 +428,6 @@ src/requester.o: src/requester.cpp.o
 # target to build an object file
 src/requester.cpp.o:
 	$(MAKE) -f CMakeFiles/requester.dir/build.make CMakeFiles/requester.dir/src/requester.cpp.o
-	$(MAKE) -f CMakeFiles/tasker.dir/build.make CMakeFiles/tasker.dir/src/requester.cpp.o
 .PHONY : src/requester.cpp.o
 
 src/requester.i: src/requester.cpp.i
@@ -437,7 +436,6 @@ src/requester.i: src/requester.cpp.i
 # target to preprocess a source file
 src/requester.cpp.i:
 	$(MAKE) -f CMakeFiles/requester.dir/build.make CMakeFiles/requester.dir/src/requester.cpp.i
-	$(MAKE) -f CMakeFiles/tasker.dir/build.make CMakeFiles/tasker.dir/src/requester.cpp.i
 .PHONY : src/requester.cpp.i
 
 src/requester.s: src/requester.cpp.s
@@ -446,8 +444,31 @@ src/requester.s: src/requester.cpp.s
 # target to generate assembly for a file
 src/requester.cpp.s:
 	$(MAKE) -f CMakeFiles/requester.dir/build.make CMakeFiles/requester.dir/src/requester.cpp.s
-	$(MAKE) -f CMakeFiles/tasker.dir/build.make CMakeFiles/tasker.dir/src/requester.cpp.s
 .PHONY : src/requester.cpp.s
+
+src/tasker.o: src/tasker.cpp.o
+.PHONY : src/tasker.o
+
+# target to build an object file
+src/tasker.cpp.o:
+	$(MAKE) -f CMakeFiles/tasker.dir/build.make CMakeFiles/tasker.dir/src/tasker.cpp.o
+.PHONY : src/tasker.cpp.o
+
+src/tasker.i: src/tasker.cpp.i
+.PHONY : src/tasker.i
+
+# target to preprocess a source file
+src/tasker.cpp.i:
+	$(MAKE) -f CMakeFiles/tasker.dir/build.make CMakeFiles/tasker.dir/src/tasker.cpp.i
+.PHONY : src/tasker.cpp.i
+
+src/tasker.s: src/tasker.cpp.s
+.PHONY : src/tasker.s
+
+# target to generate assembly for a file
+src/tasker.cpp.s:
+	$(MAKE) -f CMakeFiles/tasker.dir/build.make CMakeFiles/tasker.dir/src/tasker.cpp.s
+.PHONY : src/tasker.cpp.s
 
 # Help Target
 help:
@@ -486,6 +507,9 @@ help:
 	@echo "... src/requester.o"
 	@echo "... src/requester.i"
 	@echo "... src/requester.s"
+	@echo "... src/tasker.o"
+	@echo "... src/tasker.i"
+	@echo "... src/tasker.s"
 .PHONY : help
 
 

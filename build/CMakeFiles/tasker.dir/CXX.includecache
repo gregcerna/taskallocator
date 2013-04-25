@@ -30,7 +30,7 @@ ros/assert.h
 std_msgs/Header.h
 ../msg_gen/cpp/include/taskallocator/std_msgs/Header.h
 
-/nishome/gcerna/ros/rosbuild_ws/taskallocator/src/requester.cpp
+/nishome/gcerna/ros/rosbuild_ws/taskallocator/src/tasker.cpp
 ros/ros.h
 /nishome/gcerna/ros/rosbuild_ws/taskallocator/src/ros/ros.h
 std_msgs/String.h
@@ -39,6 +39,8 @@ std_msgs/Header.h
 /nishome/gcerna/ros/rosbuild_ws/taskallocator/src/std_msgs/Header.h
 taskallocator/Request.h
 /nishome/gcerna/ros/rosbuild_ws/taskallocator/src/taskallocator/Request.h
+queue
+-
 
 /opt/ros/groovy/include/XmlRpcDecl.h
 ros/macros.h
