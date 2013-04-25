@@ -9,7 +9,8 @@
 
 std::queue<float> tasks;
 float totalTime;
-
+float lastX;
+float lastY;
 
 float getDistance (float startX, float startY, float endX, float endY){
   return sqrt(pow(endX-startX,2)+pow(endY-startY,2));
@@ -17,14 +18,20 @@ float getDistance (float startX, float startY, float endX, float endY){
 	
 void processRequest(taskallocator::Request msg){
 	
-	float distance =getDistance (msg.startX, msg.startY, msg.endX, msg.endY);
+	float travelDistance = getDistance(lastX, lastY, msg.startX, msg.startY);
+	float taskDistance =getDistance (msg.startX, msg.startY, msg.endX, msg.endY);
+	
+	float totalDistance = travelDistance + taskDistance;
 
-	tasks.push(distance);
-	totalTime+=distance;
+	lastX = msg.endX;
+	lastY = msg.endY;
+
+	tasks.push(totalDistance);
+	totalTime+=totalDistance;
 
 	ROS_INFO("Message type: %s",msg.taskType.c_str());
 	ROS_INFO("Request device %s", msg.requestDevice.c_str());
-	ROS_INFO("Distance - %f ",distance);
+	ROS_INFO("Distance - %f ",totalDistance);
 	ROS_INFO("Total Time - %f",totalTime);
 	ROS_INFO("Total Tasks - %d",(int)tasks.size());
 }
