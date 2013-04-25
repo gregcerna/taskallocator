@@ -8,12 +8,12 @@
 int main(int argc, char **argv) {
 	ros::init(argc, argv, "requester");
 	ros::NodeHandle n;
-	ros::Publisher request_pub = n.advertise<taskallocator:Request>("requests",1000);
+	ros::Publisher requester_pub = n.advertise<taskallocator::Request>("requests",1000);
 	ros::Rate loop_rate(0.5);
 
 	int count = 0;
 	while(ros::ok()) {
-		Request msg;
+		taskallocator::Request msg;
 		msg.taskType = "goToPoint";
 		msg.requestDevice = "robot";
 		msg.startFloor = 3;
