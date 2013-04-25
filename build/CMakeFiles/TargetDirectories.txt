@@ -1,6 +1,7 @@
 /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles/ROSBUILD_genmsg_cpp.dir
 /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles/ROSBUILD_genmsg_py.dir
 /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles/ROSBUILD_gensrv_cpp.dir
+/nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles/bidder.dir
 /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles/clean_test_results.dir
 /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles/doxygen.dir
 /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/gtest/CMakeFiles/gtest.dir

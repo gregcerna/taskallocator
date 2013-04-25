@@ -31,5 +31,5 @@ rosbuild_genmsg()
 
 rosbuild_add_executable(requester src/requester.cpp)
 rosbuild_add_executable(tasker src/tasker.cpp)
-
+rosbuild_add_executable(bidder src/bidder.cpp)
 

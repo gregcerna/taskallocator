@@ -2,7 +2,9 @@ FILE(REMOVE_RECURSE
   "../msg_gen"
   "../src/taskallocator/msg"
   "CMakeFiles/ROSBUILD_genmsg_cpp"
+  "../msg_gen/cpp/include/taskallocator/Bid.h"
   "../msg_gen/cpp/include/taskallocator/Request.h"
+  "../msg_gen/cpp/include/taskallocator/Instruction.h"
 )
 
 # Per-language clean rules from dependency scanning.

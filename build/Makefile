@@ -176,6 +176,19 @@ ROSBUILD_gensrv_cpp/fast:
 .PHONY : ROSBUILD_gensrv_cpp/fast
 
 #=============================================================================
+# Target rules for targets named bidder
+
+# Build rule for target.
+bidder: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 bidder
+.PHONY : bidder
+
+# fast build rule for target.
+bidder/fast:
+	$(MAKE) -f CMakeFiles/bidder.dir/build.make CMakeFiles/bidder.dir/build
+.PHONY : bidder/fast
+
+#=============================================================================
 # Target rules for targets named clean_test_results
 
 # Build rule for target.
@@ -422,6 +435,30 @@ gtest_main/fast:
 	$(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/build
 .PHONY : gtest_main/fast
 
+src/bidder.o: src/bidder.cpp.o
+.PHONY : src/bidder.o
+
+# target to build an object file
+src/bidder.cpp.o:
+	$(MAKE) -f CMakeFiles/bidder.dir/build.make CMakeFiles/bidder.dir/src/bidder.cpp.o
+.PHONY : src/bidder.cpp.o
+
+src/bidder.i: src/bidder.cpp.i
+.PHONY : src/bidder.i
+
+# target to preprocess a source file
+src/bidder.cpp.i:
+	$(MAKE) -f CMakeFiles/bidder.dir/build.make CMakeFiles/bidder.dir/src/bidder.cpp.i
+.PHONY : src/bidder.cpp.i
+
+src/bidder.s: src/bidder.cpp.s
+.PHONY : src/bidder.s
+
+# target to generate assembly for a file
+src/bidder.cpp.s:
+	$(MAKE) -f CMakeFiles/bidder.dir/build.make CMakeFiles/bidder.dir/src/bidder.cpp.s
+.PHONY : src/bidder.cpp.s
+
 src/requester.o: src/requester.cpp.o
 .PHONY : src/requester.o
 
@@ -479,6 +516,7 @@ help:
 	@echo "... ROSBUILD_genmsg_cpp"
 	@echo "... ROSBUILD_genmsg_py"
 	@echo "... ROSBUILD_gensrv_cpp"
+	@echo "... bidder"
 	@echo "... clean_test_results"
 	@echo "... doxygen"
 	@echo "... edit_cache"
@@ -504,6 +542,9 @@ help:
 	@echo "... tests"
 	@echo "... gtest"
 	@echo "... gtest_main"
+	@echo "... src/bidder.o"
+	@echo "... src/bidder.i"
+	@echo "... src/bidder.s"
 	@echo "... src/requester.o"
 	@echo "... src/requester.i"
 	@echo "... src/requester.s"

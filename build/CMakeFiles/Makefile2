@@ -56,13 +56,13 @@ CMAKE_BINARY_DIR = /nishome/gcerna/ros/rosbuild_ws/taskallocator/build
 CMakeFiles/ROSBUILD_genmsg_cpp.dir/all: CMakeFiles/rosbuild_premsgsrvgen.dir/all
 	$(MAKE) -f CMakeFiles/ROSBUILD_genmsg_cpp.dir/build.make CMakeFiles/ROSBUILD_genmsg_cpp.dir/depend
 	$(MAKE) -f CMakeFiles/ROSBUILD_genmsg_cpp.dir/build.make CMakeFiles/ROSBUILD_genmsg_cpp.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles  1
+	$(CMAKE_COMMAND) -E cmake_progress_report /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles  1 2 3
 	@echo "Built target ROSBUILD_genmsg_cpp"
 .PHONY : CMakeFiles/ROSBUILD_genmsg_cpp.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/ROSBUILD_genmsg_cpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles 3
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/ROSBUILD_genmsg_cpp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles 0
 .PHONY : CMakeFiles/ROSBUILD_genmsg_cpp.dir/rule
@@ -87,13 +87,13 @@ clean: CMakeFiles/ROSBUILD_genmsg_cpp.dir/clean
 CMakeFiles/ROSBUILD_genmsg_py.dir/all: CMakeFiles/rosbuild_premsgsrvgen.dir/all
 	$(MAKE) -f CMakeFiles/ROSBUILD_genmsg_py.dir/build.make CMakeFiles/ROSBUILD_genmsg_py.dir/depend
 	$(MAKE) -f CMakeFiles/ROSBUILD_genmsg_py.dir/build.make CMakeFiles/ROSBUILD_genmsg_py.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles  2 3
+	$(CMAKE_COMMAND) -E cmake_progress_report /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles  4 5 6 7
 	@echo "Built target ROSBUILD_genmsg_py"
 .PHONY : CMakeFiles/ROSBUILD_genmsg_py.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/ROSBUILD_genmsg_py.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles 4
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/ROSBUILD_genmsg_py.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles 0
 .PHONY : CMakeFiles/ROSBUILD_genmsg_py.dir/rule
@@ -143,6 +143,41 @@ clean: CMakeFiles/ROSBUILD_gensrv_cpp.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/bidder.dir
+
+# All Build rule for target.
+CMakeFiles/bidder.dir/all: CMakeFiles/rosbuild_precompile.dir/all
+	$(MAKE) -f CMakeFiles/bidder.dir/build.make CMakeFiles/bidder.dir/depend
+	$(MAKE) -f CMakeFiles/bidder.dir/build.make CMakeFiles/bidder.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles  8
+	@echo "Built target bidder"
+.PHONY : CMakeFiles/bidder.dir/all
+
+# Include target in all.
+all: CMakeFiles/bidder.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/bidder.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles 8
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/bidder.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles 0
+.PHONY : CMakeFiles/bidder.dir/rule
+
+# Convenience name for target.
+bidder: CMakeFiles/bidder.dir/rule
+.PHONY : bidder
+
+# clean rule for target.
+CMakeFiles/bidder.dir/clean:
+	$(MAKE) -f CMakeFiles/bidder.dir/build.make CMakeFiles/bidder.dir/clean
+.PHONY : CMakeFiles/bidder.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/bidder.dir/clean
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/clean_test_results.dir
 
 # All Build rule for target.
@@ -180,7 +215,7 @@ clean: CMakeFiles/clean_test_results.dir/clean
 CMakeFiles/doxygen.dir/all:
 	$(MAKE) -f CMakeFiles/doxygen.dir/build.make CMakeFiles/doxygen.dir/depend
 	$(MAKE) -f CMakeFiles/doxygen.dir/build.make CMakeFiles/doxygen.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles  4
+	$(CMAKE_COMMAND) -E cmake_progress_report /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles  9
 	@echo "Built target doxygen"
 .PHONY : CMakeFiles/doxygen.dir/all
 
@@ -211,7 +246,7 @@ clean: CMakeFiles/doxygen.dir/clean
 CMakeFiles/requester.dir/all: CMakeFiles/rosbuild_precompile.dir/all
 	$(MAKE) -f CMakeFiles/requester.dir/build.make CMakeFiles/requester.dir/depend
 	$(MAKE) -f CMakeFiles/requester.dir/build.make CMakeFiles/requester.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles  7
+	$(CMAKE_COMMAND) -E cmake_progress_report /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles  12
 	@echo "Built target requester"
 .PHONY : CMakeFiles/requester.dir/all
 
@@ -221,7 +256,7 @@ all: CMakeFiles/requester.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/requester.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles 8
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/requester.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles 0
 .PHONY : CMakeFiles/requester.dir/rule
@@ -284,7 +319,7 @@ CMakeFiles/rosbuild_precompile.dir/all: CMakeFiles/rospack_genmsg.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/rosbuild_precompile.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles 7
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/rosbuild_precompile.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles 0
 .PHONY : CMakeFiles/rosbuild_precompile.dir/rule
@@ -347,7 +382,7 @@ CMakeFiles/rospack_genmsg.dir/all: CMakeFiles/ROSBUILD_genmsg_py.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/rospack_genmsg.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles 7
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/rospack_genmsg.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles 0
 .PHONY : CMakeFiles/rospack_genmsg.dir/rule
@@ -382,7 +417,7 @@ all: CMakeFiles/rospack_genmsg_all.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/rospack_genmsg_all.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles 7
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/rospack_genmsg_all.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles 0
 .PHONY : CMakeFiles/rospack_genmsg_all.dir/rule
@@ -500,7 +535,7 @@ clean: CMakeFiles/run_tests.dir/clean
 CMakeFiles/tasker.dir/all: CMakeFiles/rosbuild_precompile.dir/all
 	$(MAKE) -f CMakeFiles/tasker.dir/build.make CMakeFiles/tasker.dir/depend
 	$(MAKE) -f CMakeFiles/tasker.dir/build.make CMakeFiles/tasker.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles  8
+	$(CMAKE_COMMAND) -E cmake_progress_report /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles  13
 	@echo "Built target tasker"
 .PHONY : CMakeFiles/tasker.dir/all
 
@@ -510,7 +545,7 @@ all: CMakeFiles/tasker.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/tasker.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles 8
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/tasker.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles 0
 .PHONY : CMakeFiles/tasker.dir/rule
@@ -706,7 +741,7 @@ gtest/preinstall:
 gtest/CMakeFiles/gtest.dir/all:
 	$(MAKE) -f gtest/CMakeFiles/gtest.dir/build.make gtest/CMakeFiles/gtest.dir/depend
 	$(MAKE) -f gtest/CMakeFiles/gtest.dir/build.make gtest/CMakeFiles/gtest.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles  5
+	$(CMAKE_COMMAND) -E cmake_progress_report /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles  10
 	@echo "Built target gtest"
 .PHONY : gtest/CMakeFiles/gtest.dir/all
 
@@ -737,7 +772,7 @@ clean: gtest/CMakeFiles/gtest.dir/clean
 gtest/CMakeFiles/gtest_main.dir/all: gtest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/depend
 	$(MAKE) -f gtest/CMakeFiles/gtest_main.dir/build.make gtest/CMakeFiles/gtest_main.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles  6
+	$(CMAKE_COMMAND) -E cmake_progress_report /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/CMakeFiles  11
 	@echo "Built target gtest_main"
 .PHONY : gtest/CMakeFiles/gtest_main.dir/all
 

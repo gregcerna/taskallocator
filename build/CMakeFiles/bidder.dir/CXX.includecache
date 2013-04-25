@@ -30,20 +30,14 @@ ros/assert.h
 std_msgs/Header.h
 ../msg_gen/cpp/include/taskallocator/std_msgs/Header.h
 
-/nishome/gcerna/ros/rosbuild_ws/taskallocator/src/tasker.cpp
+/nishome/gcerna/ros/rosbuild_ws/taskallocator/src/bidder.cpp
 ros/ros.h
 /nishome/gcerna/ros/rosbuild_ws/taskallocator/src/ros/ros.h
 std_msgs/String.h
 /nishome/gcerna/ros/rosbuild_ws/taskallocator/src/std_msgs/String.h
-std_msgs/Header.h
-/nishome/gcerna/ros/rosbuild_ws/taskallocator/src/std_msgs/Header.h
 taskallocator/Request.h
 /nishome/gcerna/ros/rosbuild_ws/taskallocator/src/taskallocator/Request.h
 math.h
--
-queue
--
-iostream
 -
 
 /opt/ros/groovy/include/XmlRpcDecl.h

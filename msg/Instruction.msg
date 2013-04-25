@@ -3,6 +3,6 @@ uint32 ID
 uint32 startFloor
 float32 startX
 float32 startY
-uint32 startFloor
+uint32 endFloor
 float32 endX
 float32 endY
