@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /nishome/gcerna/ros/rosbuild_ws/taskallocator/build/devel/setup.sh

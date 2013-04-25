@@ -1,0 +1,17 @@
+<package>
+  <description brief="taskallocator">
+
+     taskallocator
+
+  </description>
+  <author>Greg Cerna, Zo Asmail</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://github.com/gregcerna/taskallocator</url>
+  <depend package="roslib"/>
+  <depend package="roscpp"/>
+  <depend package="std_msgs"/>
+
+</package>
+
+
