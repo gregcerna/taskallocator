@@ -3,6 +3,7 @@ FILE(REMOVE_RECURSE
   "../src/taskallocator/msg"
   "CMakeFiles/ROSBUILD_genmsg_py"
   "../src/taskallocator/msg/__init__.py"
+  "../src/taskallocator/msg/_Task.py"
   "../src/taskallocator/msg/_Bid.py"
   "../src/taskallocator/msg/_Request.py"
   "../src/taskallocator/msg/_Instruction.py"

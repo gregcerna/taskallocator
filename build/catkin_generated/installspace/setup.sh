@@ -6,25 +6,25 @@
 # Supported command line options:
 # --extend: skips the undoing of changes from a previously sourced setup file
 
-_SETUP_UTIL="/usr/local/_setup_util.py"
+SETUP_UTIL="/usr/local/_setup_util.py"
 
-if [ ! -f "$_SETUP_UTIL" ]; then
-  echo "Missing Python script: $_SETUP_UTIL"
+if [ ! -f "$SETUP_UTIL" ]; then
+  echo "Missing Python script: $SETUP_UTIL"
   return 22
 fi
 
 # detect if running on Darwin platform
-_UNAME=`which uname`
-_UNAME=`$_UNAME`
-_IS_DARWIN=0
-if [ "$_UNAME" = "Darwin" ]; then
-  _IS_DARWIN=1
+UNAME=`which uname`
+UNAME=`$UNAME`
+IS_DARWIN=0
+if [ "$UNAME" = "Darwin" ]; then
+  IS_DARWIN=1
 fi
 
 # make sure to export all environment variables
 export CMAKE_PREFIX_PATH
 export CPATH
-if [ $_IS_DARWIN -eq 0 ]; then
+if [ $IS_DARWIN -eq 0 ]; then
   export LD_LIBRARY_PATH
 else
   export DYLD_LIBRARY_PATH
@@ -33,29 +33,45 @@ export PATH
 export PKG_CONFIG_PATH
 export PYTHONPATH
 
+# invoke Python script to generate necessary exports of environment variables
+MKTEMP=`which mktemp`
+SETUP_TMP=`$MKTEMP /tmp/setup.sh.XXXXXXXXXX`
+$SETUP_UTIL $@ > $SETUP_TMP
+. $SETUP_TMP
+rm $SETUP_TMP
+
 # remember type of shell if not already set
 if [ -z "$CATKIN_SHELL" ]; then
   CATKIN_SHELL=sh
 fi
 
-# invoke Python script to generate necessary exports of environment variables
-_MKTEMP=`which mktemp`
-_SETUP_TMP=`$_MKTEMP /tmp/setup.sh.XXXXXXXXXX`
-if [ $? -ne 0 -o ! -f "$_SETUP_TMP" ]; then
-  echo "Could not create temporary file: $_SETUP_TMP"
-  return 1
-fi
-CATKIN_SHELL=$CATKIN_SHELL "$_SETUP_UTIL" $@ > $_SETUP_TMP
-. $_SETUP_TMP
-_RM=`which rm`
-$_RM $_SETUP_TMP
-
-# source all environment hooks
+# find all environment hooks
+ENV_HOOKS_GENERIC=""
+ENV_HOOKS_SPECIFIC=""
+# order by workspace and ordered inside each workspace
 _IFS=$IFS
 IFS=":"
-for _envfile in $_CATKIN_ENVIRONMENT_HOOKS; do
-  IFS=$_IFS
-  . "$_envfile"
+FIND=`which find`
+SORT=`which sort`
+for path in $CMAKE_PREFIX_PATH; do
+  # ignore non-catkin workspaces
+  if [ -z "$path" -o ! -f "$path/.catkin" ]; then
+    continue
+  fi
+  ENV_HOOKS_GENERIC="$($FIND "$path/etc/catkin/profile.d" -maxdepth 1 -name "*.sh" 2>/dev/null | $SORT)
+$ENV_HOOKS_GENERIC"
+  if [ "$CATKIN_SHELL" != "sh" ]; then
+    ENV_HOOKS_SPECIFIC="$($FIND "$path/etc/catkin/profile.d" -maxdepth 1 -name "*.$CATKIN_SHELL" 2>/dev/null | $SORT)
+$ENV_HOOKS_SPECIFIC"
+  fi
 done
 IFS=$_IFS
-unset _CATKIN_ENVIRONMENT_HOOKS
+
+# source generic and shell-specific environment hooks
+_IFS=$IFS
+IFS="
+"
+for envfile in $ENV_HOOKS_GENERIC $ENV_HOOKS_SPECIFIC; do
+  . "$envfile"
+done
+IFS=$_IFS

@@ -42,11 +42,8 @@ import platform
 import sys
 
 # environment at generation time
-CMAKE_PREFIX_PATH = '/nishome/gcerna/ros/catkin_ws/devel;/opt/ros/groovy'.split(';')
-setup_dir = '/nishome/gcerna/ros/rosbuild_ws/taskallocator/build/devel'
-if setup_dir not in CMAKE_PREFIX_PATH:
-    CMAKE_PREFIX_PATH.insert(0, setup_dir)
-CMAKE_PREFIX_PATH = os.pathsep.join(CMAKE_PREFIX_PATH)
+CMAKE_PREFIX_PATH = os.pathsep.join('/nishome/gcerna/ros/catkin_ws/devel;/opt/ros/groovy'.split(';'))
+CURRENT_WORKSPACE = os.path.dirname(__file__)
 
 CATKIN_MARKER_FILE = '.catkin'
 
@@ -129,15 +126,16 @@ def _get_workspaces(environ, include_fuerte=False):
     return workspaces
 
 
-def prepend_env_variables(environ, env_var_subfolders, workspaces):
+def prepend_env_variables(environ, env_var_subfolders, current_workspace, parent_workspaces):
     '''
     Generate shell code to prepend environment variables
-    for the all workspaces.
+    for the current and all parent workspaces.
     '''
     lines = []
     lines.append(comment('prepend folders of workspaces to environment variables'))
 
-    paths = [path for path in workspaces.split(os.pathsep) if path]
+    value = '%s%s%s' % (current_workspace, os.pathsep, parent_workspaces)
+    paths = [path for path in value.split(os.pathsep) if path]
 
     prefix = _prefix_env_variable(environ, 'CMAKE_PREFIX_PATH', paths, '')
     lines.append(prepend(environ, 'CMAKE_PREFIX_PATH', prefix))
@@ -172,7 +170,7 @@ def assignment(key, value):
     if not IS_WINDOWS:
         return 'export %s="%s"' % (key, value)
     else:
-        return 'set %s=%s' % (key, value)
+        return 'set %s="%s"' % (key, value)
 
 
 def comment(msg):
@@ -188,43 +186,7 @@ def prepend(environ, key, prefix):
     if not IS_WINDOWS:
         return 'export %s="%s$%s"' % (key, prefix, key)
     else:
-        return 'set %s=%s%%%s%%' % (key, prefix, key)
-
-
-def find_env_hooks(environ, cmake_prefix_path):
-    '''
-    Generate shell code with found environment hooks
-    for the all workspaces.
-    '''
-    lines = []
-    lines.append(comment('found environment hooks in workspaces'))
-
-    generic_env_hooks = []
-    specific_env_hooks = []
-    generic_env_hooks_by_filename = {}
-    specific_env_hooks_by_filename = {}
-    generic_env_hook_ext = 'bat' if IS_WINDOWS else 'sh'
-    specific_env_hook_ext = environ['CATKIN_SHELL'] if not IS_WINDOWS and 'CATKIN_SHELL' in environ and environ['CATKIN_SHELL'] else None
-    # remove non-workspace paths
-    workspaces = [path for path in cmake_prefix_path.split(os.pathsep) if path and os.path.isfile(os.path.join(path, CATKIN_MARKER_FILE))]
-    for workspace in reversed(workspaces):
-        env_hook_dir = os.path.join(workspace, 'etc', 'catkin', 'profile.d')
-        if os.path.isdir(env_hook_dir):
-            for filename in sorted(os.listdir(env_hook_dir)):
-                if filename.endswith('.%s' % generic_env_hook_ext):
-                    generic_env_hooks.append(os.path.join(env_hook_dir, filename))
-                    # remove previous env hook with same name if present
-                    if filename in generic_env_hooks_by_filename:
-                        generic_env_hooks.remove(generic_env_hooks_by_filename[filename])
-                    generic_env_hooks_by_filename[filename] = generic_env_hooks[-1]
-                elif specific_env_hook_ext is not None and filename.endswith('.%s' % specific_env_hook_ext):
-                    specific_env_hooks.append(os.path.join(env_hook_dir, filename))
-                    # remove previous env hook with same name if present
-                    if filename in specific_env_hooks_by_filename:
-                        specific_env_hooks.remove(specific_env_hooks_by_filename[filename])
-                    specific_env_hooks_by_filename[filename] = specific_env_hooks[-1]
-    lines.append(assignment('_CATKIN_ENVIRONMENT_HOOKS', os.pathsep.join(generic_env_hooks + specific_env_hooks)))
-    return lines
+        return 'set %s="%s%%%s%%"' % (key, prefix, key)
 
 
 def _parse_arguments(args=None):
@@ -244,7 +206,6 @@ if __name__ == '__main__':
     lines = []
     if not args.extend:
         lines += rollback_env_variables(environ, ENV_VAR_SUBFOLDERS)
-    lines += prepend_env_variables(environ, ENV_VAR_SUBFOLDERS, CMAKE_PREFIX_PATH)
-    lines += find_env_hooks(environ, CMAKE_PREFIX_PATH)
+    lines += prepend_env_variables(environ, ENV_VAR_SUBFOLDERS, CURRENT_WORKSPACE, CMAKE_PREFIX_PATH)
     print('\n'.join(lines))
     sys.exit(0)

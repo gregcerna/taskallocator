@@ -7,14 +7,25 @@ import struct
 import std_msgs.msg
 
 class Instruction(genpy.Message):
-  _md5sum = "4bdca53c8b1389f8f3bf41757c2a9ddb"
+  _md5sum = "c5b8fd0efb48ef4c6ae166244ce8dd59"
   _type = "taskallocator/Instruction"
   _has_header = True #flag to mark the presence of a Header object
   _full_text = """Header header
-uint32 ID
+
+#determines type of instruction
+bool reqsHumanHelp
+
+#standardized set of descriptors for different human interactions (eventually)
+#extraneous if reqsHumanHelp is false
+#not yet implemented (only goto is right now) 
+string helpDescriptor
+
+#all fields below are only for goto commands
+#extraneous if reqsHumanHelp is true
 uint32 startFloor
 float32 startX
 float32 startY
+
 uint32 endFloor
 float32 endX
 float32 endY
@@ -38,8 +49,8 @@ time stamp
 string frame_id
 
 """
-  __slots__ = ['header','ID','startFloor','startX','startY','endFloor','endX','endY']
-  _slot_types = ['std_msgs/Header','uint32','uint32','float32','float32','uint32','float32','float32']
+  __slots__ = ['header','reqsHumanHelp','helpDescriptor','startFloor','startX','startY','endFloor','endX','endY']
+  _slot_types = ['std_msgs/Header','bool','string','uint32','float32','float32','uint32','float32','float32']
 
   def __init__(self, *args, **kwds):
     """
@@ -49,7 +60,7 @@ string frame_id
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       header,ID,startFloor,startX,startY,endFloor,endX,endY
+       header,reqsHumanHelp,helpDescriptor,startFloor,startX,startY,endFloor,endX,endY
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -60,8 +71,10 @@ string frame_id
       #message fields cannot be None, assign default values for those that are
       if self.header is None:
         self.header = std_msgs.msg.Header()
-      if self.ID is None:
-        self.ID = 0
+      if self.reqsHumanHelp is None:
+        self.reqsHumanHelp = False
+      if self.helpDescriptor is None:
+        self.helpDescriptor = ''
       if self.startFloor is None:
         self.startFloor = 0
       if self.startX is None:
@@ -76,7 +89,8 @@ string frame_id
         self.endY = 0.
     else:
       self.header = std_msgs.msg.Header()
-      self.ID = 0
+      self.reqsHumanHelp = False
+      self.helpDescriptor = ''
       self.startFloor = 0
       self.startX = 0.
       self.startY = 0.
@@ -104,8 +118,15 @@ string frame_id
         _x = _x.encode('utf-8')
         length = len(_x)
       buff.write(struct.pack('<I%ss'%length, length, _x))
+      buff.write(_struct_B.pack(self.reqsHumanHelp))
+      _x = self.helpDescriptor
+      length = len(_x)
+      if python3 or type(_x) == unicode:
+        _x = _x.encode('utf-8')
+        length = len(_x)
+      buff.write(struct.pack('<I%ss'%length, length, _x))
       _x = self
-      buff.write(_struct_2I2fI2f.pack(_x.ID, _x.startFloor, _x.startX, _x.startY, _x.endFloor, _x.endX, _x.endY))
+      buff.write(_struct_I2fI2f.pack(_x.startFloor, _x.startX, _x.startY, _x.endFloor, _x.endX, _x.endY))
     except struct.error as se: self._check_types(se)
     except TypeError as te: self._check_types(te)
 
@@ -131,10 +152,23 @@ string frame_id
         self.header.frame_id = str[start:end].decode('utf-8')
       else:
         self.header.frame_id = str[start:end]
+      start = end
+      end += 1
+      (self.reqsHumanHelp,) = _struct_B.unpack(str[start:end])
+      self.reqsHumanHelp = bool(self.reqsHumanHelp)
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      start = end
+      end += length
+      if python3:
+        self.helpDescriptor = str[start:end].decode('utf-8')
+      else:
+        self.helpDescriptor = str[start:end]
       _x = self
       start = end
-      end += 28
-      (_x.ID, _x.startFloor, _x.startX, _x.startY, _x.endFloor, _x.endX, _x.endY,) = _struct_2I2fI2f.unpack(str[start:end])
+      end += 24
+      (_x.startFloor, _x.startX, _x.startY, _x.endFloor, _x.endX, _x.endY,) = _struct_I2fI2f.unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -155,8 +189,15 @@ string frame_id
         _x = _x.encode('utf-8')
         length = len(_x)
       buff.write(struct.pack('<I%ss'%length, length, _x))
+      buff.write(_struct_B.pack(self.reqsHumanHelp))
+      _x = self.helpDescriptor
+      length = len(_x)
+      if python3 or type(_x) == unicode:
+        _x = _x.encode('utf-8')
+        length = len(_x)
+      buff.write(struct.pack('<I%ss'%length, length, _x))
       _x = self
-      buff.write(_struct_2I2fI2f.pack(_x.ID, _x.startFloor, _x.startX, _x.startY, _x.endFloor, _x.endX, _x.endY))
+      buff.write(_struct_I2fI2f.pack(_x.startFloor, _x.startX, _x.startY, _x.endFloor, _x.endX, _x.endY))
     except struct.error as se: self._check_types(se)
     except TypeError as te: self._check_types(te)
 
@@ -183,14 +224,28 @@ string frame_id
         self.header.frame_id = str[start:end].decode('utf-8')
       else:
         self.header.frame_id = str[start:end]
+      start = end
+      end += 1
+      (self.reqsHumanHelp,) = _struct_B.unpack(str[start:end])
+      self.reqsHumanHelp = bool(self.reqsHumanHelp)
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      start = end
+      end += length
+      if python3:
+        self.helpDescriptor = str[start:end].decode('utf-8')
+      else:
+        self.helpDescriptor = str[start:end]
       _x = self
       start = end
-      end += 28
-      (_x.ID, _x.startFloor, _x.startX, _x.startY, _x.endFloor, _x.endX, _x.endY,) = _struct_2I2fI2f.unpack(str[start:end])
+      end += 24
+      (_x.startFloor, _x.startX, _x.startY, _x.endFloor, _x.endX, _x.endY,) = _struct_I2fI2f.unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
 
 _struct_I = genpy.struct_I
+_struct_I2fI2f = struct.Struct("<I2fI2f")
 _struct_3I = struct.Struct("<3I")
-_struct_2I2fI2f = struct.Struct("<2I2fI2f")
+_struct_B = struct.Struct("<B")

@@ -24,7 +24,8 @@ struct Instruction_ {
 
   Instruction_()
   : header()
-  , ID(0)
+  , reqsHumanHelp(false)
+  , helpDescriptor()
   , startFloor(0)
   , startX(0.0)
   , startY(0.0)
@@ -36,7 +37,8 @@ struct Instruction_ {
 
   Instruction_(const ContainerAllocator& _alloc)
   : header(_alloc)
-  , ID(0)
+  , reqsHumanHelp(false)
+  , helpDescriptor(_alloc)
   , startFloor(0)
   , startX(0.0)
   , startY(0.0)
@@ -49,8 +51,11 @@ struct Instruction_ {
   typedef  ::std_msgs::Header_<ContainerAllocator>  _header_type;
    ::std_msgs::Header_<ContainerAllocator>  header;
 
-  typedef uint32_t _ID_type;
-  uint32_t ID;
+  typedef uint8_t _reqsHumanHelp_type;
+  uint8_t reqsHumanHelp;
+
+  typedef std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other >  _helpDescriptor_type;
+  std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other >  helpDescriptor;
 
   typedef uint32_t _startFloor_type;
   uint32_t startFloor;
@@ -99,12 +104,12 @@ template<class ContainerAllocator>
 struct MD5Sum< ::taskallocator::Instruction_<ContainerAllocator> > {
   static const char* value() 
   {
-    return "4bdca53c8b1389f8f3bf41757c2a9ddb";
+    return "c5b8fd0efb48ef4c6ae166244ce8dd59";
   }
 
   static const char* value(const  ::taskallocator::Instruction_<ContainerAllocator> &) { return value(); } 
-  static const uint64_t static_value1 = 0x4bdca53c8b1389f8ULL;
-  static const uint64_t static_value2 = 0xf3bf41757c2a9ddbULL;
+  static const uint64_t static_value1 = 0xc5b8fd0efb48ef4cULL;
+  static const uint64_t static_value2 = 0x6ae166244ce8dd59ULL;
 };
 
 template<class ContainerAllocator>
@@ -122,10 +127,21 @@ struct Definition< ::taskallocator::Instruction_<ContainerAllocator> > {
   static const char* value() 
   {
     return "Header header\n\
-uint32 ID\n\
+\n\
+#determines type of instruction\n\
+bool reqsHumanHelp\n\
+\n\
+#standardized set of descriptors for different human interactions (eventually)\n\
+#extraneous if reqsHumanHelp is false\n\
+#not yet implemented (only goto is right now) \n\
+string helpDescriptor\n\
+\n\
+#all fields below are only for goto commands\n\
+#extraneous if reqsHumanHelp is true\n\
 uint32 startFloor\n\
 float32 startX\n\
 float32 startY\n\
+\n\
 uint32 endFloor\n\
 float32 endX\n\
 float32 endY\n\
@@ -169,7 +185,8 @@ template<class ContainerAllocator> struct Serializer< ::taskallocator::Instructi
   template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
   {
     stream.next(m.header);
-    stream.next(m.ID);
+    stream.next(m.reqsHumanHelp);
+    stream.next(m.helpDescriptor);
     stream.next(m.startFloor);
     stream.next(m.startX);
     stream.next(m.startY);
@@ -196,8 +213,10 @@ struct Printer< ::taskallocator::Instruction_<ContainerAllocator> >
     s << indent << "header: ";
 s << std::endl;
     Printer< ::std_msgs::Header_<ContainerAllocator> >::stream(s, indent + "  ", v.header);
-    s << indent << "ID: ";
-    Printer<uint32_t>::stream(s, indent + "  ", v.ID);
+    s << indent << "reqsHumanHelp: ";
+    Printer<uint8_t>::stream(s, indent + "  ", v.reqsHumanHelp);
+    s << indent << "helpDescriptor: ";
+    Printer<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::stream(s, indent + "  ", v.helpDescriptor);
     s << indent << "startFloor: ";
     Printer<uint32_t>::stream(s, indent + "  ", v.startFloor);
     s << indent << "startX: ";

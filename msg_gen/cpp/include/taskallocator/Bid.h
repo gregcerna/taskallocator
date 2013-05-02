@@ -15,7 +15,7 @@
 #include "ros/assert.h"
 
 #include "std_msgs/Header.h"
-#include "taskallocator/Instruction.h"
+#include "taskallocator/Task.h"
 
 namespace taskallocator
 {
@@ -25,14 +25,16 @@ struct Bid_ {
 
   Bid_()
   : header()
-  , inst()
+  , task()
+  , ID(0)
   , bidCost(0.0)
   {
   }
 
   Bid_(const ContainerAllocator& _alloc)
   : header(_alloc)
-  , inst(_alloc)
+  , task(_alloc)
+  , ID(0)
   , bidCost(0.0)
   {
   }
@@ -40,8 +42,11 @@ struct Bid_ {
   typedef  ::std_msgs::Header_<ContainerAllocator>  _header_type;
    ::std_msgs::Header_<ContainerAllocator>  header;
 
-  typedef  ::taskallocator::Instruction_<ContainerAllocator>  _inst_type;
-   ::taskallocator::Instruction_<ContainerAllocator>  inst;
+  typedef  ::taskallocator::Task_<ContainerAllocator>  _task_type;
+   ::taskallocator::Task_<ContainerAllocator>  task;
+
+  typedef uint32_t _ID_type;
+  uint32_t ID;
 
   typedef float _bidCost_type;
   float bidCost;
@@ -75,12 +80,12 @@ template<class ContainerAllocator>
 struct MD5Sum< ::taskallocator::Bid_<ContainerAllocator> > {
   static const char* value() 
   {
-    return "d550354f9161d53878b35fcb15499a4f";
+    return "a98846b1135a183a1abeeff5b916c6b2";
   }
 
   static const char* value(const  ::taskallocator::Bid_<ContainerAllocator> &) { return value(); } 
-  static const uint64_t static_value1 = 0xd550354f9161d538ULL;
-  static const uint64_t static_value2 = 0x78b35fcb15499a4fULL;
+  static const uint64_t static_value1 = 0xa98846b1135a183aULL;
+  static const uint64_t static_value2 = 0x1abeeff5b916c6b2ULL;
 };
 
 template<class ContainerAllocator>
@@ -98,7 +103,8 @@ struct Definition< ::taskallocator::Bid_<ContainerAllocator> > {
   static const char* value() 
   {
     return "Header header\n\
-Instruction inst\n\
+Task task\n\
+uint32 ID\n\
 float32 bidCost\n\
 \n\
 ================================================================================\n\
@@ -120,12 +126,28 @@ time stamp\n\
 string frame_id\n\
 \n\
 ================================================================================\n\
+MSG: taskallocator/Task\n\
+Header header\n\
+Instruction[] instructions\n\
+\n\
+================================================================================\n\
 MSG: taskallocator/Instruction\n\
 Header header\n\
-uint32 ID\n\
+\n\
+#determines type of instruction\n\
+bool reqsHumanHelp\n\
+\n\
+#standardized set of descriptors for different human interactions (eventually)\n\
+#extraneous if reqsHumanHelp is false\n\
+#not yet implemented (only goto is right now) \n\
+string helpDescriptor\n\
+\n\
+#all fields below are only for goto commands\n\
+#extraneous if reqsHumanHelp is true\n\
 uint32 startFloor\n\
 float32 startX\n\
 float32 startY\n\
+\n\
 uint32 endFloor\n\
 float32 endX\n\
 float32 endY\n\
@@ -151,7 +173,8 @@ template<class ContainerAllocator> struct Serializer< ::taskallocator::Bid_<Cont
   template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
   {
     stream.next(m.header);
-    stream.next(m.inst);
+    stream.next(m.task);
+    stream.next(m.ID);
     stream.next(m.bidCost);
   }
 
@@ -173,9 +196,11 @@ struct Printer< ::taskallocator::Bid_<ContainerAllocator> >
     s << indent << "header: ";
 s << std::endl;
     Printer< ::std_msgs::Header_<ContainerAllocator> >::stream(s, indent + "  ", v.header);
-    s << indent << "inst: ";
+    s << indent << "task: ";
 s << std::endl;
-    Printer< ::taskallocator::Instruction_<ContainerAllocator> >::stream(s, indent + "  ", v.inst);
+    Printer< ::taskallocator::Task_<ContainerAllocator> >::stream(s, indent + "  ", v.task);
+    s << indent << "ID: ";
+    Printer<uint32_t>::stream(s, indent + "  ", v.ID);
     s << indent << "bidCost: ";
     Printer<float>::stream(s, indent + "  ", v.bidCost);
   }
