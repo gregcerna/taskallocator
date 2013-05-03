@@ -67,7 +67,7 @@ void bidOnTask(taskallocator::Task task){
 	//allowing the queue to be rearranged, incorporate human interaction, etc
 
 	
-	
+	//create bid	
 	taskallocator::Bid myBid;
 	myBid.task = latestTask;
 	myBid.ID = robotID;
@@ -104,7 +104,7 @@ void evaluateBids(taskallocator::Bid bid){
 
 		if(iWin){
 
-			//instruction to get from end of last task to beginning of new one
+			//create instruction to get from end of last task to beginning of new one
 			taskallocator::Instruction getToNewTask;
 			
 			getToNewTask.reqsHumanHelp = false;
