@@ -9,34 +9,12 @@
 #include <iostream>
 #include <vector>
 
-//std::queue<float> taskQueue;
-//float totalTime;
-//float lastX;
-//float lastY;
-
 
 ros::Publisher taskPub;
 
 
 
-//float getDistance (float startX, float startY, float endX, float endY){
-//  return sqrt(pow(endX-startX,2)+pow(endY-startY,2));
-//}
-	
 void processRequest(taskallocator::Request msg){
-	/*
-	float travelDistance = getDistance(lastX, lastY, msg.startX, msg.startY);
-	float taskDistance   = getDistance(msg.startX, msg.startY, msg.endX, msg.endY);
-	
-	float totalDistance = travelDistance + taskDistance;
-
-	lastX = msg.endX;
-	lastY = msg.endY;
-
-	taskQueue.push(totalDistance);
-	totalTime+=totalDistance;
-	*/
-	
 
 	taskallocator::Task task;
 	taskallocator::Instruction inst;

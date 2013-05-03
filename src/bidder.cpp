@@ -9,27 +9,25 @@
 #include <time.h>
 #include <queue>
 #include <vector>
-//TODO bernadine dias auction based task allocation 
-//TODO contract nets
-//TODO wolfstetter [4] single item auction theory
 
 unsigned int robotID;
 
-
 ros::Publisher bidPub;
 
-taskallocator::Task latestTask;
-taskallocator::Instruction currentInstr;
-bool executing = false;
-std::queue<taskallocator::Instruction> instrQueue;
 
+taskallocator::Task latestTask;//task to bid on
 std::vector<taskallocator::Bid> bidList;
+bool auctionComplete = false;
+
+taskallocator::Instruction currentInstr;//instruction currently being executed
+std::queue<taskallocator::Instruction> instrQueue;
+bool executing = false;
 
 float totalQueueTime;
 float instrTimeLeft;
 
-float endOfQueueX = rand()%20;//initialize starting location
-float endOfQueueY = rand()%20;//to random values
+float endOfQueueX;
+float endOfQueueY;
 
 unsigned int numRobots = 4;
 
@@ -39,25 +37,31 @@ float bidVal;
 float getDistance (float startX, float startY, float endX, float endY){
   return sqrt(pow(endX-startX,2)+pow(endY-startY,2));
 }
+float getDistance(taskallocator::Instruction instr){
+	return getDistance(instr.startX, instr.startY, instr.endX, instr.endY);
+}
 
 void bidOnTask(taskallocator::Task task){
 	
 	//bidOnTask is only called when a new task is made
 	latestTask = task;
 	bidList.clear();
+	auctionComplete = false;	
+
 
 	//right now, only handle a single goto
 	taskallocator::Instruction instr = task.instructions[0];
 	
-	//we are using the MINSUM bidding rule, or minimizing the sum
-	//of all the path lengths of the robots
-	//aiming to add the LEAST distance to total robot path length
+	//we are using the MINIMAX bidding rule, or minimizing the longest
+	//path length of the robots
+	//aiming to spread out load across robots
+	//usually gives task to robot with least workload
 
-	//robot with least distance between end point of queue and start point
-	//will win the auction because the task distance is fixed
-	bidVal = 0;
-	bidVal = getDistance(endOfQueueX,endOfQueueY,instr.startX,instr.startY);
-	
+	//robot with shortest queue time and distance to new task
+	//will win the auction because task distance is constant for all robots
+	bidVal = totalQueueTime;
+	bidVal += getDistance(endOfQueueX,endOfQueueY,instr.startX,instr.startY);
+	bidVal += getDistance(instr);
 	//sidenote - this is a VERY simplistic implementation. bidding rules
 	//become MUCH more complex as you start adding multi-instruction tasks,
 	//allowing the queue to be rearranged, incorporate human interaction, etc
@@ -82,14 +86,19 @@ void evaluateBids(taskallocator::Bid bid){
 	}
 	
 	//if robot has received all bids
-	if(bidList.size() == numRobots - 1){
+	if(bidList.size() == numRobots - 1 && !auctionComplete){
 		
 		bool iWin = true;
-		
+		auctionComplete = true;
+
 		//lowest bid wins. robot only cares whether it wins or not
 		for(unsigned int i = 0; i < bidList.size(); i++){
 			if(bidList[i].bidCost < bidVal){
 				iWin = false;
+			}else if(bidList[i].bidCost == bidVal){
+				iWin = robotID > bidList[i].ID;//tiebreaker, assumes all IDs unique
+				//TODO implement robotIDs so they are *for sure* different
+				//instead of just random and probable that they are different
 			}
 		}
 
@@ -110,7 +119,7 @@ void evaluateBids(taskallocator::Bid bid){
 			getToNewTask.endY = latestTask.instructions[0].startY;		
 
 			instrQueue.push(getToNewTask);
-			totalQueueTime += bidVal; //equivalent to getToNewTask distance
+			totalQueueTime += getDistance(getToNewTask); 
 			
 			endOfQueueX = getToNewTask.endX;
 			endOfQueueY = getToNewTask.endY;
@@ -121,18 +130,17 @@ void evaluateBids(taskallocator::Bid bid){
 				taskallocator::Instruction instr = latestTask.instructions[j];
 				instrQueue.push(instr);
 				
-				totalQueueTime += getDistance(instr.startX, instr.startY,
-							instr.endX, instr.endY);
+				totalQueueTime += getDistance(instr);
 			
 				endOfQueueX = instr.endX;
 				endOfQueueY = instr.endY;
 			}
 
-			ROS_INFO("\nI, Robot %d, won! My bid was %f.",robotID,bidVal);
+			ROS_INFO("\nI won task %d! My bid was %f.",latestTask.header.seq,bidVal);
 			ROS_INFO("Total Queue Time - %f \n\n", totalQueueTime);
 		}
 		else{
-			ROS_INFO("I, Robot %d, lost :( My bid was %f.",robotID,bidVal);
+			ROS_INFO("I lost task %d. My bid was %f.",latestTask.header.seq,bidVal);
 			ROS_INFO("Total Queue Time - %f\n", totalQueueTime);
 		}
 
@@ -153,8 +161,12 @@ int main (int argc, char **argv){
 
 	bidPub = n.advertise<taskallocator::Bid>("bids",1000);
 
-	srand(time(NULL));
+	srand(time(NULL));//init random seed
+
 	robotID = rand()%1000;//each robot has a random ID
+
+	endOfQueueX = rand()%20;//represents random starting location
+	endOfQueueY = rand()%20;
 
 	ros::Rate loop_rate(1);
 
@@ -166,8 +178,7 @@ int main (int argc, char **argv){
 			executing = true;	
 			currentInstr = instrQueue.front();
 			instrQueue.pop();
-			instrTimeLeft = getDistance(currentInstr.startX, currentInstr.startY,
-						currentInstr.endX, currentInstr.endY);
+			instrTimeLeft = getDistance(currentInstr);
 		}
 
 		
@@ -182,12 +193,11 @@ int main (int argc, char **argv){
 			float leftover = instrTimeLeft;// -1 < leftover < 0
 			currentInstr = instrQueue.front();
 			instrQueue.pop();
-			instrTimeLeft = getDistance(currentInstr.startX, currentInstr.startY,
-						currentInstr.endX, currentInstr.endY);
+			instrTimeLeft = getDistance(currentInstr);
 			instrTimeLeft -= leftover;
 			
-			ROS_INFO("Task finished! %d tasks (%f seconds) to go.",
-				instrQueue.size()+1,totalQueueTime);
+			ROS_INFO("Executing new task. %d tasks (%f seconds) left in queue.",
+				instrQueue.size(),totalQueueTime);
 		
 		}//robot has finished all tasks
 		else if(executing){
@@ -196,12 +206,10 @@ int main (int argc, char **argv){
 			executing = false;
 			ROS_INFO("All tasks finished!");
 		}
-
 		
-		
-
 		ros::spinOnce();
 		loop_rate.sleep();
+
 	}
 	
 	ros::spin();
